@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "display-overlay"
+dynamic = ["version"]
+description = "Always-on-top overlay that shows RAM and commit memory on Windows, also above a game"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "xv8mna" }]
+requires-python = ">=3.12"
+keywords = ["overlay", "memory", "ram", "commit-charge", "windows", "gaming", "pyside6"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Win32 (MS Windows)",
+    "Intended Audience :: End Users/Desktop",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: System :: Monitoring",
+]
+dependencies = [
+    "PySide6-Essentials>=6.12,<7",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=9,<10", "pytest-qt>=4.4,<5", "ruff==0.17.0"]
+build = ["pyinstaller>=6.22,<7", "setuptools>=77"]  # the Windows download (tools/build.py)
+
+[project.urls]
+Homepage = "https://github.com/xv8mna/display-overlay"
+Issues = "https://github.com/xv8mna/display-overlay/issues"
+
+[project.gui-scripts]
+display-overlay = "display_overlay.app:main"
+
+[tool.setuptools.dynamic]
+version = { attr = "display_overlay.__version__" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "B", "UP", "I"]
+ignore = ["E501", "B905"]

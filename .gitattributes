@@ -1,0 +1,3 @@
+# Text files use LF everywhere (in the repository and in the working folder).
+* text=auto eol=lf
+*.png binary
