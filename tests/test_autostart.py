@@ -3,9 +3,9 @@ import winreg
 
 import pytest
 
-from display_overlay import APP_NAME, autostart
+from memhud import APP_NAME, autostart
 
-PARENT = r"Software\DisplayOverlayTests"
+PARENT = r"Software\MemHUDTests"
 
 
 @pytest.fixture
@@ -38,13 +38,13 @@ def test_turn_off_when_it_is_off(run_key):
 
 def test_the_command_has_no_console_window(monkeypatch):
     monkeypatch.setattr(sys, "executable", r"C:\Some Folder\Scripts\python.exe")
-    assert autostart.command() == r'"C:\Some Folder\Scripts\pythonw.exe" -m display_overlay'
+    assert autostart.command() == r'"C:\Some Folder\Scripts\pythonw.exe" -m memhud'
 
 
 def test_the_download_starts_its_own_exe(monkeypatch):
     monkeypatch.setattr(sys, "frozen", True, raising=False)
-    monkeypatch.setattr(sys, "executable", r"C:\Some Folder\DisplayOverlay\DisplayOverlay.exe")
-    assert autostart.command() == r'"C:\Some Folder\DisplayOverlay\DisplayOverlay.exe"'
+    monkeypatch.setattr(sys, "executable", r"C:\Some Folder\MemHUD\MemHUD.exe")
+    assert autostart.command() == r'"C:\Some Folder\MemHUD\MemHUD.exe"'
 
 
 def test_a_command_that_is_too_long_is_refused(run_key, monkeypatch):

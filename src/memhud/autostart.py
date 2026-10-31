@@ -22,7 +22,7 @@ def command() -> str:
     python = Path(sys.executable)
     if python.name.lower() == "python.exe":
         python = python.with_name("pythonw.exe")
-    return f'"{python}" -m display_overlay'
+    return f'"{python}" -m memhud'
 
 
 def is_on() -> bool:

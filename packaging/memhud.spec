@@ -1,4 +1,4 @@
-# PyInstaller: the Windows download, a folder with DisplayOverlay.exe. Built by tools\build.py, which
+# PyInstaller: the Windows download, a folder with MemHUD.exe. Built by tools\build.py, which
 # also makes the icon, checks the result and zips it. A folder, not one packed file: the program
 # starts faster, which matters with autostart, and the Qt DLLs stay files that can be replaced.
 
@@ -29,7 +29,7 @@ programs = Analysis(["app.py"], pathex=["../src"], excludes=["PySide6.QtNetwork"
 programs.binaries = [entry for entry in programs.binaries if needed(entry)]
 programs.datas = [entry for entry in programs.datas if needed(entry)]
 program = EXE(
-    PYZ(programs.pure), programs.scripts, [], exclude_binaries=True, name="DisplayOverlay", icon="../build/app.ico",
+    PYZ(programs.pure), programs.scripts, [], exclude_binaries=True, name="MemHUD", icon="../build/app.ico",
     console=False, upx=False,
 )  # fmt: skip
-COLLECT(program, programs.binaries, programs.datas, name="DisplayOverlay", upx=False)
+COLLECT(program, programs.binaries, programs.datas, name="MemHUD", upx=False)

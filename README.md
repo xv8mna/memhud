@@ -1,4 +1,4 @@
-# DisplayOverlay
+# MemHUD
 
 A small always-on-top overlay for Windows. It shows how much memory your computer has left, in a
 corner of the screen, also above a game. It takes no clicks and no focus, and it does not touch
@@ -40,21 +40,21 @@ and Mark Russinovich's
 
 ## Install
 
-DisplayOverlay runs on Windows 10 and 11.
+MemHUD runs on Windows 10 and 11.
 
-**Download** (no Python needed): get `DisplayOverlay-<version>-windows.zip` from the
-[latest release](https://github.com/xv8mna/display-overlay/releases/latest) and unzip it into a
-folder of yours. Start `DisplayOverlay.exe` in the folder `DisplayOverlay`. The program is not
-signed: if Windows says "Windows protected your PC", click "More info", then "Run anyway".
+**Download** (no Python needed): get `MemHUD-<version>-windows.zip` from the
+[latest release](https://github.com/xv8mna/memhud/releases/latest) and unzip it into a folder of
+yours. Start `MemHUD.exe` in the folder `MemHUD`. The program is not signed: if Windows says
+"Windows protected your PC", click "More info", then "Run anyway".
 
 **From source** (Python 3.12 or newer, and Git):
 
 ```
-git clone https://github.com/xv8mna/display-overlay.git
-cd display-overlay
+git clone https://github.com/xv8mna/memhud.git
+cd memhud
 py -m venv .venv
 .venv\Scripts\python -m pip install .
-.venv\Scripts\display-overlay
+.venv\Scripts\memhud
 ```
 
 ## Use
@@ -62,9 +62,9 @@ py -m venv .venv
 The overlay appears when the program starts, and its icon appears in the notification area of the
 taskbar. Click the icon to open the settings. Right-click it to hide the overlay or to quit.
 
-Settings are saved in `%APPDATA%\DisplayOverlay\settings.json`. The log file is in
-`%LOCALAPPDATA%\DisplayOverlay`. "Start with Windows" adds one value to the Run key of your user
-account, so it needs no admin rights, and Task Manager lists it under Startup.
+Settings are saved in `%APPDATA%\MemHUD\settings.json`. The log file is in `%LOCALAPPDATA%\MemHUD`.
+"Start with Windows" adds one value to the Run key of your user account, so it needs no admin
+rights, and Task Manager lists it under Startup.
 
 ## Games
 
@@ -88,8 +88,8 @@ there.
 
 ## Privacy
 
-DisplayOverlay works offline. It reads the names and memory sizes of running programs to show them
-on your screen, and it sends nothing anywhere.
+MemHUD works offline. It reads the names and memory sizes of running programs to show them on your
+screen, and it sends nothing anywhere.
 
 ## Development
 

@@ -3,7 +3,7 @@ requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "display-overlay"
+name = "memhud"
 dynamic = ["version"]
 description = "Always-on-top overlay that shows RAM and commit memory on Windows, also above a game"
 readme = "README.md"
@@ -32,14 +32,14 @@ dev = ["pytest>=9,<10", "pytest-qt>=4.4,<5", "ruff==0.17.0"]
 build = ["pyinstaller>=6.22,<7", "setuptools>=77"]  # the Windows download (tools/build.py)
 
 [project.urls]
-Homepage = "https://github.com/xv8mna/display-overlay"
-Issues = "https://github.com/xv8mna/display-overlay/issues"
+Homepage = "https://github.com/xv8mna/memhud"
+Issues = "https://github.com/xv8mna/memhud/issues"
 
 [project.gui-scripts]
-display-overlay = "display_overlay.app:main"
+memhud = "memhud.app:main"
 
 [tool.setuptools.dynamic]
-version = { attr = "display_overlay.__version__" }
+version = { attr = "memhud.__version__" }
 
 [tool.setuptools.packages.find]
 where = ["src"]

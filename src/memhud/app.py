@@ -23,11 +23,11 @@ from .overlay import OverlayWindow
 from .rows import build_rows
 from .settings_window import SettingsWindow
 
-log = logging.getLogger("display_overlay")
+log = logging.getLogger("memhud")
 
 _ALREADY_EXISTS = 183  # ERROR_ALREADY_EXISTS
 # tools\build.py: the built program starts, updates the overlay and ends. Exit code 4: an unexpected error
-STARTUP_CHECK = "DISPLAY_OVERLAY_STARTUP_CHECK"
+STARTUP_CHECK = "MEMHUD_STARTUP_CHECK"
 _errors = 0  # unexpected errors since the start
 
 

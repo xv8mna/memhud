@@ -1,6 +1,6 @@
 import json
 
-from display_overlay.config import VERSION, Config, load, save
+from memhud.config import VERSION, Config, load, save
 
 
 def test_no_file_gives_the_defaults(tmp_path):

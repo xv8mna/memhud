@@ -11,10 +11,10 @@ from PySide6.QtCore import QPoint
 from PySide6.QtGui import QColor, QImage, QLinearGradient, QPainter
 from PySide6.QtWidgets import QApplication
 
-from display_overlay.config import Config
-from display_overlay.memory import Memory
-from display_overlay.overlay import OverlayWindow
-from display_overlay.rows import build_rows
+from memhud.config import Config
+from memhud.memory import Memory
+from memhud.overlay import OverlayWindow
+from memhud.rows import build_rows
 
 GB = 1024**3
 MEMORY = Memory(ram_used=26 * GB, ram_total=32 * GB, commit_used=56 * GB, commit_limit=60 * GB)

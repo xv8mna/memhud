@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QCheckBox, QComboBox, QLineEdit, QPushButton, QSpinBox
 
-from display_overlay.config import Config
-from display_overlay.settings_window import ColorButton, SettingsWindow
+from memhud.config import Config
+from memhud.settings_window import ColorButton, SettingsWindow
 
 
 def settings(qtbot, **values) -> SettingsWindow:

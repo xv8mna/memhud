@@ -1,7 +1,7 @@
 import sys
 from pathlib import Path
 
-from display_overlay.memory import Program, read_memory, read_programs, top_programs
+from memhud.memory import Program, read_memory, read_programs, top_programs
 
 GB = 1024**3
 

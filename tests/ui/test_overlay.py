@@ -2,9 +2,9 @@ import pytest
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QColor, QGuiApplication
 
-from display_overlay.config import Config
-from display_overlay.overlay import OverlayWindow
-from display_overlay.rows import ALARM, Row
+from memhud.config import Config
+from memhud.overlay import OverlayWindow
+from memhud.rows import ALARM, Row
 
 ROWS = [Row("RAM", "8.0 / 32.0 GB  25%"), Row("COMMIT", "60.0 / 64.0 GB  94%", ALARM)]
 

@@ -1,5 +1,5 @@
-"""DisplayOverlay.exe of the Windows download."""
+"""MemHUD.exe of the Windows download."""
 
-from display_overlay.app import main
+from memhud.app import main
 
 raise SystemExit(main())

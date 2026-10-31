@@ -2,8 +2,8 @@ import pytest
 from PySide6.QtGui import QColor, QPalette
 from PySide6.QtWidgets import QApplication, QCheckBox, QSystemTrayIcon
 
-from display_overlay import app as program
-from display_overlay.config import Config, load, settings_file
+from memhud import app as program
+from memhud.config import Config, load, settings_file
 
 
 @pytest.fixture

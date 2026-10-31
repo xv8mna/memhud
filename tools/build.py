@@ -1,5 +1,5 @@
-"""Build the Windows download and check it: dist\\DisplayOverlay (DisplayOverlay.exe, the libraries
-and their licenses) and dist\\DisplayOverlay-<version>-windows.zip.
+"""Build the Windows download and check it: dist\\MemHUD (MemHUD.exe, the libraries and their
+licenses) and dist\\MemHUD-<version>-windows.zip.
 
 Build in a fresh virtual environment with Python 3.14, so that only what the program needs goes in:
 
@@ -29,7 +29,7 @@ from pathlib import Path, PurePath
 
 ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / "dist"
-APP = DIST / "DisplayOverlay"
+APP = DIST / "MemHUD"
 WORK = ROOT / "build"
 QT_NOTICES = ROOT / "packaging" / "licenses" / "Qt-third-party.txt"
 PYTHON_NOTICES = ROOT / "packaging" / "licenses" / "Python" / "ACKNOWLEDGEMENTS.txt"
@@ -37,7 +37,7 @@ PYTHON_NOTICES = ROOT / "packaging" / "licenses" / "Python" / "ACKNOWLEDGEMENTS.
 # Tools for building, not part of the download. PyInstaller is not one of them: its start-up code
 # and run-time hooks are in the program.
 BUILD_TOOLS = {"pip", "pyinstaller-hooks-contrib", "setuptools", "altgraph", "pefile", "pywin32-ctypes", "packaging",
-               "display-overlay"}  # fmt: skip
+               "memhud"}  # fmt: skip
 ICON_SIZES = (16, 32, 48, 256)
 # Notes for libraries whose license files don't cover all their code
 LICENSE_NOTES = {
@@ -50,7 +50,7 @@ def main() -> None:
     parser.add_argument("--dirty", action="store_true", help="build with changes that are not committed (to try things out)")
     if not parser.parse_args().dirty:
         _committed()
-    from display_overlay import __version__
+    from memhud import __version__
 
     versions = _versions()
     _check_python_notices()
@@ -60,7 +60,7 @@ def main() -> None:
     _write_icon(WORK / "app.ico")
     subprocess.run(
         [
-            sys.executable, "-m", "PyInstaller", "display_overlay.spec", "--noconfirm", "--log-level", "WARN",
+            sys.executable, "-m", "PyInstaller", "memhud.spec", "--noconfirm", "--log-level", "WARN",
             "--distpath", str(DIST), "--workpath", str(WORK),
         ],  # fmt: skip
         cwd=ROOT / "packaging",
@@ -108,11 +108,11 @@ def _versions() -> dict[str, str]:
 
 
 def _write_icon(path: Path) -> None:
-    """The icon of DisplayOverlay.exe: the drawing of the tray icon, as PNG images in an .ico file."""
+    """The icon of MemHUD.exe: the drawing of the tray icon, as PNG images in an .ico file."""
     from PySide6.QtCore import QBuffer
     from PySide6.QtGui import QGuiApplication
 
-    from display_overlay.app import draw_icon
+    from memhud.app import draw_icon
 
     _app = QGuiApplication.instance() or QGuiApplication([])
     images = []
@@ -157,7 +157,7 @@ def _check_qt_notices() -> None:
 def _check_sources() -> None:
     """Everything in the download comes from Python, the build environment, the source or the build
     itself, and nothing from other programs on the build machine's PATH."""
-    (entries,) = ast.literal_eval((WORK / "display_overlay" / "COLLECT-00.toc").read_text(encoding="utf-8"))
+    (entries,) = ast.literal_eval((WORK / "memhud" / "COLLECT-00.toc").read_text(encoding="utf-8"))
     allowed = [Path(folder).resolve() for folder in (sys.base_prefix, sys.prefix, ROOT / "src", WORK)]
     foreign = [
         f"  {destination}  from  {source}"
@@ -233,7 +233,7 @@ def _license_path(file: PurePath) -> PurePath:
 def _check() -> None:
     """The program starts, updates the overlay and ends without an error: in a temporary folder,
     without the settings of the build machine and without DLLs from other programs."""
-    from display_overlay.app import STARTUP_CHECK
+    from memhud.app import STARTUP_CHECK
 
     windows = os.environ.get("SystemRoot", r"C:\Windows")
     with tempfile.TemporaryDirectory() as folder:
@@ -245,18 +245,18 @@ def _check() -> None:
             "QT_QPA_PLATFORM": "offscreen",
             STARTUP_CHECK: "1",
         }
-        code = subprocess.run([APP / "DisplayOverlay.exe"], env=environment, timeout=60).returncode
+        code = subprocess.run([APP / "MemHUD.exe"], env=environment, timeout=60).returncode
     if code:
-        raise SystemExit(f"DisplayOverlay.exe ended with exit code {code}")
-    print("checked: DisplayOverlay.exe started, updated the overlay and ended without an error")
+        raise SystemExit(f"MemHUD.exe ended with exit code {code}")
+    print("checked: MemHUD.exe started, updated the overlay and ended without an error")
 
 
 def _zip(version: str) -> Path:
-    archive = DIST / f"DisplayOverlay-{version}-windows.zip"
+    archive = DIST / f"MemHUD-{version}-windows.zip"
     with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED, compresslevel=9) as out:
         for file in sorted(APP.rglob("*")):
             if file.is_file():
-                out.write(file, Path("DisplayOverlay") / file.relative_to(APP))
+                out.write(file, Path("MemHUD") / file.relative_to(APP))
     return archive
 
 

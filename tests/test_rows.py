@@ -1,6 +1,6 @@
-from display_overlay.config import Config
-from display_overlay.memory import Memory
-from display_overlay.rows import ALARM, NORMAL, WARNING, Row, build_rows
+from memhud.config import Config
+from memhud.memory import Memory
+from memhud.rows import ALARM, NORMAL, WARNING, Row, build_rows
 
 GB = 1024**3
 MEMORY = Memory(ram_used=8 * GB, ram_total=32 * GB, commit_used=16 * GB, commit_limit=64 * GB)

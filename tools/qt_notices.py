@@ -22,7 +22,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "packaging" / "licenses" / "Qt-third-party.txt"
 
-# The Qt DLLs of the download (in _internal\PySide6), as packaging\display_overlay.spec leaves them
+# The Qt DLLs of the download (in _internal\PySide6), as packaging\memhud.spec leaves them
 DLLS = [
     "Qt6Core.dll", "Qt6Gui.dll", "Qt6Svg.dll", "Qt6Widgets.dll", "plugins\\iconengines\\qsvgicon.dll",
     "plugins\\platforms\\qminimal.dll", "plugins\\platforms\\qoffscreen.dll", "plugins\\platforms\\qwindows.dll",
